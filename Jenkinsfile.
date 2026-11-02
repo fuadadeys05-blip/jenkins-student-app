@@ -1,38 +1,32 @@
-pipeline {
+pipeline 
 agent any
-stages {
-stage(&#39;Checkout&#39;) {
-steps {
+stages 
+stage(&#39;Checkout&#39
+steps 
 checkout scm
-}
-}
-stage(&#39;Build&#39;) {
-steps {
+
+stage(&#39;Build&#39 
+steps 
 sh &#39;python3 -m py_compile app.py test_app.py&#39;
-}
-}
-stage(&#39;Test&#39;) {
-steps {
+
+stage(&#39;Test&#39; 
+steps 
 sh &#39;python3 -m unittest -v test_app&#39;
-}
-}
-stage(&#39;Package&#39;) {
-steps {
+stage(&#39;Package&#39;
+steps 
 sh &#39;&#39;&#39;
 tar -czf app-package.tar.gz \
 app.py test_app.py
 &#39;&#39;&#39;
 archiveArtifacts artifacts: &#39;app-package.tar.gz&#39;
-}
-}
-}
-post {
-success {
+
+post 
+success 
 echo &#39;CI pipeline completed successfully&#39;
-}
-failure {
+
+failure 
 echo &#39;CI pipeline failed. Check Console Output.&#39;
-}
+
 always {
 echo &#39;Pipeline execution finished&#39;
 }
